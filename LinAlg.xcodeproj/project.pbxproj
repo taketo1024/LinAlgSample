@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14576A27222543ED00FCD26E /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A26222543ED00FCD26E /* Set.swift */; };
+		14576A29222543F700FCD26E /* AdditiveGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A28222543F700FCD26E /* AdditiveGroup.swift */; };
+		14576A2B2225440700FCD26E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A2A2225440700FCD26E /* Module.swift */; };
+		14576A2D2225440E00FCD26E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A2C2225440E00FCD26E /* Group.swift */; };
+		14576A2F2225441300FCD26E /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A2E2225441300FCD26E /* Ring.swift */; };
+		14576A342225442300FCD26E /* EuclideanRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A322225442300FCD26E /* EuclideanRing.swift */; };
+		14576A352225442300FCD26E /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A332225442300FCD26E /* Field.swift */; };
+		14576A382225443000FCD26E /* VectorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A362225443000FCD26E /* VectorSpace.swift */; };
+		14576A3B2225445400FCD26E /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A3A2225445400FCD26E /* Monoid.swift */; };
+		14576A3D2225466000FCD26E /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A3C2225466000FCD26E /* Operators.swift */; };
+		14576A472225469300FCD26E /* Real.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A402225469300FCD26E /* Real.swift */; };
+		14576A492225469300FCD26E /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A422225469300FCD26E /* Integer.swift */; };
+		14576A4A2225469300FCD26E /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A432225469300FCD26E /* Complex.swift */; };
+		14576A4D2225469300FCD26E /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A462225469300FCD26E /* Rational.swift */; };
+		14576A5D222546C700FCD26E /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A50222546C700FCD26E /* Vector.swift */; };
+		14576A66222546C700FCD26E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A5A222546C700FCD26E /* Matrix.swift */; };
+		14576A67222546C700FCD26E /* SquareMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A5B222546C700FCD26E /* SquareMatrix.swift */; };
+		14576A692225472500FCD26E /* TypeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A682225472500FCD26E /* TypeParameters.swift */; };
 		DD6C37E222251B7E0031D518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E122251B7E0031D518 /* AppDelegate.swift */; };
 		DD6C37E422251B7E0031D518 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E322251B7E0031D518 /* MasterViewController.swift */; };
 		DD6C37E622251B7E0031D518 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E522251B7E0031D518 /* DetailViewController.swift */; };
@@ -29,6 +47,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14576A26222543ED00FCD26E /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		14576A28222543F700FCD26E /* AdditiveGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditiveGroup.swift; sourceTree = "<group>"; };
+		14576A2A2225440700FCD26E /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		14576A2C2225440E00FCD26E /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		14576A2E2225441300FCD26E /* Ring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		14576A322225442300FCD26E /* EuclideanRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EuclideanRing.swift; sourceTree = "<group>"; };
+		14576A332225442300FCD26E /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		14576A362225443000FCD26E /* VectorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorSpace.swift; sourceTree = "<group>"; };
+		14576A3A2225445400FCD26E /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
+		14576A3C2225466000FCD26E /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		14576A402225469300FCD26E /* Real.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Real.swift; sourceTree = "<group>"; };
+		14576A422225469300FCD26E /* Integer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
+		14576A432225469300FCD26E /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		14576A462225469300FCD26E /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
+		14576A50222546C700FCD26E /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		14576A5A222546C700FCD26E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		14576A5B222546C700FCD26E /* SquareMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareMatrix.swift; sourceTree = "<group>"; };
+		14576A682225472500FCD26E /* TypeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParameters.swift; sourceTree = "<group>"; };
 		DD6C37DE22251B7E0031D518 /* LinAlg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinAlg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6C37E122251B7E0031D518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD6C37E322251B7E0031D518 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +98,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14576A25222543CB00FCD26E /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				14576A3E2225467D00FCD26E /* Abstract */,
+				14576A3F2225469300FCD26E /* Numbers */,
+				14576A4E222546C700FCD26E /* Matrix */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		14576A3E2225467D00FCD26E /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				14576A26222543ED00FCD26E /* Set.swift */,
+				14576A3A2225445400FCD26E /* Monoid.swift */,
+				14576A2C2225440E00FCD26E /* Group.swift */,
+				14576A28222543F700FCD26E /* AdditiveGroup.swift */,
+				14576A2E2225441300FCD26E /* Ring.swift */,
+				14576A322225442300FCD26E /* EuclideanRing.swift */,
+				14576A332225442300FCD26E /* Field.swift */,
+				14576A2A2225440700FCD26E /* Module.swift */,
+				14576A362225443000FCD26E /* VectorSpace.swift */,
+				14576A3C2225466000FCD26E /* Operators.swift */,
+				14576A682225472500FCD26E /* TypeParameters.swift */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		14576A3F2225469300FCD26E /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				14576A422225469300FCD26E /* Integer.swift */,
+				14576A462225469300FCD26E /* Rational.swift */,
+				14576A402225469300FCD26E /* Real.swift */,
+				14576A432225469300FCD26E /* Complex.swift */,
+			);
+			path = Numbers;
+			sourceTree = "<group>";
+		};
+		14576A4E222546C700FCD26E /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				14576A5A222546C700FCD26E /* Matrix.swift */,
+				14576A50222546C700FCD26E /* Vector.swift */,
+				14576A5B222546C700FCD26E /* SquareMatrix.swift */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		14576A6A2225473E00FCD26E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DD6C37D522251B7E0031D518 = {
 			isa = PBXGroup;
 			children = (
@@ -83,8 +175,10 @@
 		DD6C37E022251B7E0031D518 /* LinAlg */ = {
 			isa = PBXGroup;
 			children = (
+				14576A25222543CB00FCD26E /* Math */,
 				DD6C38062225244D0031D518 /* Views */,
 				DD6C380322251C000031D518 /* ViewControllers */,
+				14576A6A2225473E00FCD26E /* Extensions */,
 				DD6C37E122251B7E0031D518 /* AppDelegate.swift */,
 				DD6C37E722251B7E0031D518 /* Main.storyboard */,
 				DD6C37EA22251B810031D518 /* Assets.xcassets */,
@@ -222,11 +316,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14576A2D2225440E00FCD26E /* Group.swift in Sources */,
+				14576A382225443000FCD26E /* VectorSpace.swift in Sources */,
 				DD6C38082225245E0031D518 /* VectorView.swift in Sources */,
+				14576A472225469300FCD26E /* Real.swift in Sources */,
+				14576A692225472500FCD26E /* TypeParameters.swift in Sources */,
 				DD6C37E622251B7E0031D518 /* DetailViewController.swift in Sources */,
+				14576A27222543ED00FCD26E /* Set.swift in Sources */,
+				14576A342225442300FCD26E /* EuclideanRing.swift in Sources */,
+				14576A66222546C700FCD26E /* Matrix.swift in Sources */,
+				14576A492225469300FCD26E /* Integer.swift in Sources */,
+				14576A4A2225469300FCD26E /* Complex.swift in Sources */,
+				14576A29222543F700FCD26E /* AdditiveGroup.swift in Sources */,
 				DD6C380522251DE50031D518 /* PlaneView.swift in Sources */,
+				14576A352225442300FCD26E /* Field.swift in Sources */,
+				14576A5D222546C700FCD26E /* Vector.swift in Sources */,
+				14576A3D2225466000FCD26E /* Operators.swift in Sources */,
+				14576A67222546C700FCD26E /* SquareMatrix.swift in Sources */,
+				14576A2B2225440700FCD26E /* Module.swift in Sources */,
+				14576A2F2225441300FCD26E /* Ring.swift in Sources */,
 				DD6C37E422251B7E0031D518 /* MasterViewController.swift in Sources */,
+				14576A3B2225445400FCD26E /* Monoid.swift in Sources */,
 				DD6C37E222251B7E0031D518 /* AppDelegate.swift in Sources */,
+				14576A4D2225469300FCD26E /* Rational.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
