@@ -10,24 +10,34 @@ import UIKit
 
 class VectorView: UIView {
     
-    var vector: Vec2 = .zero
+    var vector: Vec2 = .zero {
+        didSet {
+            update()
+            setNeedsDisplay()
+        }
+    }
     
     var color: UIColor = .black
     var lineWidth: CGFloat = 2
-    
     var headRadius: CGFloat {
         return lineWidth * 2.5
     }
+    
+    weak var related: VectorView?
     
     override func draw(_ rect: CGRect) {
         guard let ctx = UIGraphicsGetCurrentContext() else {
             return
         }
         
-        let r = headRadius
-
+        if isUserInteractionEnabled {
+            ctx.setFillColor(color.withAlphaComponent(0.2).cgColor)
+            ctx.fillEllipse(in: bounds)
+        }
+        
         ctx.setFillColor(color.cgColor)
         
+        let r = headRadius
         if vector == .zero {
             let c = bounds.center
             ctx.fillEllipse(in: CGRect(c.x - r, c.y - r, 2 * r, 2 * r))
@@ -43,6 +53,13 @@ class VectorView: UIView {
             ctx.addLine(to: c + r * u(t + 4 * π / 3))
             ctx.closePath()
             ctx.fillPath()
+        }
+    }
+    
+    func update() {
+        if let planeView = superview as? PlaneView {
+            center = planeView.convertVector(vector)
+            planeView.setNeedsDisplay()
         }
     }
 }

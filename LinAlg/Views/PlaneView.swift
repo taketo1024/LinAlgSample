@@ -8,9 +8,22 @@
 
 import UIKit
 
+@objc protocol PlaneViewDelegate: class {
+    @objc optional func planeView(_ plane: PlaneView, vectorUpdated v: VectorView)
+}
+
 class PlaneView: UIView {
-    var unitLength: CGFloat = 30.0
-    var basis = (Vec2(1, 0), Vec2(0, 1))
+    let vectorViewSize: CGFloat = 40.0
+    var vectorViews: [VectorView] = []
+    
+    var unitLength: CGFloat = 30.0 {
+        didSet {
+            setNeedsDisplay()
+            vectorViews.forEach{ v in v.update() }
+        }
+    }
+
+    @IBOutlet var delegate: PlaneViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,15 +36,29 @@ class PlaneView: UIView {
     }
     
     private func initialize() {
-        [basis.0, basis.1].forEach { v in
+        [Vec2(1, 0), Vec2(0, 1)].enumerated().forEach { (i, v) in
             add(v, color: .gray)
         }
     }
     
-    var showBasis: Bool = true {
+    var gridVectorViews: (VectorView, VectorView) {
+        return (vectorViews[0], vectorViews[1])
+    }
+    
+    var gridVectors: (Vec2, Vec2) {
+        get {
+            return (gridVectorViews.0.vector, gridVectorViews.1.vector)
+        } set {
+            gridVectorViews.0.vector = newValue.0
+            gridVectorViews.1.vector = newValue.1
+            setNeedsDisplay()
+        }
+    }
+    
+    var showGridVectors: Bool = true {
         didSet {
             [vectorViews[0], vectorViews[1]].forEach { v in
-                v.isHidden = !showBasis
+                v.isHidden = !showGridVectors
             }
         }
     }
@@ -54,16 +81,12 @@ class PlaneView: UIView {
         return CGPoint(width / 2, height / 2)
     }
     
-    var vectorViews: [VectorView] {
-        return subviews.compactMap{ $0 as? VectorView }
+    func convertVector(_ v: Vec2) -> CGPoint {
+        return bounds.center + unitLength * v.asCGPoint.flipY
     }
     
-    func convert(_ v: Vec2) -> CGPoint {
-        let p = v.asCGPoint
-        return CGPoint(
-            width  / 2 + p.x * unitLength,
-            height / 2 - p.y * unitLength
-        )
+    func convertPoint(_ p: CGPoint) -> Vec2 {
+        return Vec2( ((p - bounds.center) / unitLength).flipY )
     }
     
     override func draw(_ rect: CGRect) {
@@ -81,10 +104,11 @@ class PlaneView: UIView {
         if showGrid {
             ctx.setStrokeColor(UIColor.gray.cgColor)
             
-            for (v, w) in [(basis.0, basis.1), (basis.1, basis.0)] {
+            let (v0, v1) = gridVectors
+            [(v0, v1), (v1, v0)].forEach { (v, w) in
                 for i in (0 ..< 10) { // TODO calculate line nums
-                    ctx.addLine(within: bounds, passing: convert(v + 𝐑(i) * w), arg: -v.asCGPoint.arg)
-                    ctx.addLine(within: bounds, passing: convert(v - 𝐑(i) * w), arg: -v.asCGPoint.arg)
+                    ctx.addLine(within: bounds, passing: convertVector(v + 𝐑(i) * w), arg: -v.asCGPoint.arg)
+                    ctx.addLine(within: bounds, passing: convertVector(v - 𝐑(i) * w), arg: -v.asCGPoint.arg)
                     ctx.strokePath()
                 }
             }
@@ -106,18 +130,32 @@ class PlaneView: UIView {
             if v.isHidden { continue }
             ctx.setLineWidth(v.lineWidth)
             ctx.setStrokeColor(v.color.cgColor)
-            ctx.move(to: convert(.zero))
-            ctx.addLine(to: convert(v.vector))
+            ctx.move(to: convertVector(.zero))
+            ctx.addLine(to: convertVector(v.vector))
             ctx.strokePath()
         }
     }
     
-    func add(_ v: Vec2, color: UIColor = .black) {
-        let vecView = VectorView(frame: CGRect(0, 0, 34, 34))
+    @discardableResult
+    func add(_ v: Vec2, color: UIColor = .black, userInteractionEnabled: Bool = false) -> VectorView {
+        let vecView = VectorView(frame: CGRect(0, 0, vectorViewSize, vectorViewSize))
+        vecView.tag = vectorViews.count
         vecView.vector = v
         vecView.color = color
         vecView.backgroundColor = .clear
+//        vecView.backgroundColor = .gray
+        
+        vecView.isUserInteractionEnabled = userInteractionEnabled
+        vecView.addGestureRecognizer({
+            let g = UIPanGestureRecognizer(target: self, action: #selector(panVector))
+            g.maximumNumberOfTouches = 1
+            return g
+        }())
+
+        vectorViews.append(vecView)
         addSubview(vecView)
+        
+        return vecView
     }
     
     override func layoutSubviews() {
@@ -125,8 +163,15 @@ class PlaneView: UIView {
         setNeedsDisplay()
         
         for vecView in vectorViews {
-            vecView.frame.origin = convert(vecView.vector) - vecView.bounds.center
+            vecView.center = convertVector(vecView.vector)
             vecView.setNeedsDisplay()
         }
+    }
+    
+    @IBAction func panVector(_ g: UIPanGestureRecognizer) {
+        guard let view = g.view as? VectorView else { return }
+        let p = g.location(in: self)
+        view.vector = convertPoint(p)
+        delegate?.planeView?(self, vectorUpdated: view)
     }
 }
