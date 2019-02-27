@@ -9,7 +9,38 @@
 import UIKit
 
 class PlaneView: UIView {
-    var unitLength: CGFloat = 50.0
+    var unitLength: CGFloat = 30.0
+    var basis = (Vec2(1, 0), Vec2(0, 1))
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+    
+    private func initialize() {
+        [basis.0, basis.1].forEach { v in
+            add(v, color: .gray)
+        }
+    }
+    
+    var showBasis: Bool = true {
+        didSet {
+            [vectorViews[0], vectorViews[1]].forEach { v in
+                v.isHidden = !showBasis
+            }
+        }
+    }
+    
+    var showGrid: Bool = true {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     
     var width: CGFloat {
         return bounds.width
@@ -45,6 +76,19 @@ class PlaneView: UIView {
         // fill background
         ctx.setFillColor(UIColor.white.cgColor)
         ctx.fill(self.bounds)
+        
+        // drawGrid
+        if showGrid {
+            ctx.setStrokeColor(UIColor.gray.cgColor)
+            
+            for (v, w) in [(basis.0, basis.1), (basis.1, basis.0)] {
+                for i in (0 ..< 10) { // TODO calculate line nums
+                    ctx.addLine(within: bounds, passing: convert(v + 𝐑(i) * w), arg: -v.asCGPoint.arg)
+                    ctx.addLine(within: bounds, passing: convert(v - 𝐑(i) * w), arg: -v.asCGPoint.arg)
+                    ctx.strokePath()
+                }
+            }
+        }
         
         // draw axises
         ctx.setLineWidth(1)

@@ -76,4 +76,23 @@ extension CGContext {
     func addCircle(center: CGPoint, radius: CGFloat) {
         addArc(center: center, radius: radius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
     }
+    
+    func addLine(within frame: CGRect, passing p: CGPoint, arg: CGFloat) {
+        if abs(tan(arg)) < tan(frame.size.height / frame.size.width) {
+            func point(_ x: CGFloat) -> CGPoint {
+                return CGPoint(x, tan(arg) * (x - p.x) + p.y)
+            }
+            move(to: point(frame.minX))
+            addLine(to: point(frame.maxX))
+        } else {
+            let π = CGFloat.pi
+            func point(_ y: CGFloat) -> CGPoint {
+                return CGPoint(tan(π/2 - arg) * (y - p.y) + p.x, y)
+            }
+            move(to: point(frame.minY))
+            addLine(to: point(frame.maxY))
+        }
+    }
+    
+
 }
