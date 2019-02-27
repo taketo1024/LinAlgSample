@@ -9,6 +9,12 @@
 import Foundation
 import CoreGraphics
 
+extension CGFloat {
+    var asDouble: Double {
+        return Double(self)
+    }
+}
+
 extension CGPoint {
     init(_ x: CGFloat, _ y: CGFloat) {
         self.init(x: x, y: y)
@@ -30,6 +36,10 @@ extension CGPoint {
         return CGPoint(a * p.x, a * p.y)
     }
     
+    static func /(p: CGPoint, a: CGFloat) -> CGPoint {
+        return CGPoint(p.x / a, p.y / a)
+    }
+    
     static func unit(arg t: CGFloat) -> CGPoint {
         return CGPoint(cos(t), sin(t))
     }
@@ -47,6 +57,10 @@ extension CGPoint {
         let π = CGFloat.pi
         let t = acos(x / r)
         return (y >= 0) ? t : 2 * π - t
+    }
+    
+    public var flipY: CGPoint {
+        return CGPoint(x, -y)
     }
 }
 
