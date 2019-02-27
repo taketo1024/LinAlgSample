@@ -24,17 +24,18 @@ class VectorView: UIView {
             return
         }
         
-        let c = bounds.center
         let r = headRadius
-        
+
         ctx.setFillColor(color.cgColor)
         
         if vector == .zero {
+            let c = bounds.center
             ctx.fillEllipse(in: CGRect(c.x - r, c.y - r, 2 * r, 2 * r))
         } else {
             let π = CGFloat.pi
-            let t = -vector.asCGPoint.arg
             let u = CGPoint.unit
+            let t = -vector.asCGPoint.arg
+            let c = bounds.center - r * u(t)
             
             ctx.beginPath()
             ctx.move(to: c + r * u(t))
