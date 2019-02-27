@@ -109,31 +109,3 @@ public struct RealNumber: Field, Comparable, ExpressibleByIntegerLiteral, Expres
 }
 
 public let π = 𝐑(Double.pi)
-
-public func exp(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(exp(x.value))
-}
-
-public func sin(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(sin(x.value))
-}
-
-public func cos(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(cos(x.value))
-}
-
-public func tan(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(tan(x.value))
-}
-
-public func asin(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(asin(x.value))
-}
-
-public func acos(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(acos(x.value))
-}
-
-public func atan(_ x: 𝐑) -> 𝐑 {
-    return 𝐑(atan(x.value))
-}
