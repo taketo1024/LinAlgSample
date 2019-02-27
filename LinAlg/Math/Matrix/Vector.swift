@@ -9,13 +9,9 @@
 import Foundation
 
 public typealias ColVector<n: _Int, R: Ring> = Matrix<n, _1, R>
-public typealias RowVector<n: _Int, R: Ring> = Matrix<_1, n, R>
+public typealias RowVector<m: _Int, R: Ring> = Matrix<_1, m, R>
 
-public typealias Vector2<R: Ring> = ColVector<_2, R>
-public typealias Vector3<R: Ring> = ColVector<_3, R>
-public typealias Vector4<R: Ring> = ColVector<_4, R>
-
-
+// ColVector
 public extension Matrix where m == _1 {
     public subscript(index: Int) -> R {
         get { return self[index, 0] }
@@ -23,6 +19,7 @@ public extension Matrix where m == _1 {
     }
 }
 
+// RowVector
 public extension Matrix where n == _1 {
     public subscript(index: Int) -> R {
         get { return self[0, index] }

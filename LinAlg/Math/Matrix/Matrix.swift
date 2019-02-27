@@ -40,8 +40,8 @@ public struct Matrix<n: _Int, m: _Int, R: Ring>: Module {
     }
     
     public subscript(i: Int, j: Int) -> R {
-        get { return grid[i * rows + j] }
-        set { grid[i * rows + j] = newValue }
+        get { return grid[i * cols + j] }
+        set { grid[i * cols + j] = newValue }
     }
     
     public static var zero: Matrix<n, m, R> {
