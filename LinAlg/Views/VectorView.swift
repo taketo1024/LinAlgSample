@@ -17,8 +17,10 @@ class VectorView: UIView {
     
     var vector: Vec2 = .zero {
         didSet {
-            setNeedsDisplay()
-            delegate?.vectorViewUpdated(self)
+            if vector != oldValue {
+                setNeedsDisplay()
+                delegate?.vectorViewUpdated(self)
+            }
         }
     }
     

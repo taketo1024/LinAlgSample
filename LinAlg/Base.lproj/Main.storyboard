@@ -115,7 +115,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="E4m-BQ-kgL">
                                 <connections>
-                                    <action selector="refresh" destination="JEX-9P-axG" id="auO-1o-mcK"/>
+                                    <action selector="reset" destination="JEX-9P-axG" id="fdf-2l-MZM"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="pause" id="8Gh-54-VyF">

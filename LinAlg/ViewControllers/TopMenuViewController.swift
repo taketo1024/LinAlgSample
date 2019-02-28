@@ -9,8 +9,28 @@
 import UIKit
 
 class TopMenuViewController: UITableViewController {
-
-    var items = ["a", "b"]
+    
+    enum Item: CaseIterable {
+        case general, scale, rotate, oproj
+        var title: String {
+            switch self {
+            case .general: return "線形変換"
+            case .scale  : return "拡大・縮小"
+            case .rotate : return "回転"
+            case .oproj  : return "正射影"
+            }
+        }
+        var transform: Mat2 {
+            switch self {
+            case .general: return .identity
+            case .scale  : return .diagonal(2, 3)
+            case .rotate : return .rotation(0.5235)
+            case .oproj  : return .unit(0, 0)
+            }
+        }
+    }
+    
+    var items = Array(Item.allCases)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +49,11 @@ class TopMenuViewController: UITableViewController {
             guard let nav = segue.destination as? UINavigationController,
                   let vc = nav.topViewController as? TwoPlanesViewController else { return }
             
-            vc.title = items[selected]
+            let item = items[selected]
+            vc.title = item.title
             vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.initialTransform = item.transform
             
             splitViewController?.toggleMasterView()
         }
@@ -42,13 +64,12 @@ class TopMenuViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return Item.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        cell.textLabel!.text = items[indexPath.row].description
+        cell.textLabel?.text = items[indexPath.row].title
         return cell
     }
 }

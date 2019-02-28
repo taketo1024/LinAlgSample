@@ -39,38 +39,9 @@ class PlaneView: UIView, VectorViewDelegate {
         backgroundColor = .white
         layer.borderWidth = 0.5
         layer.borderColor = UIColor.gray.cgColor
-        [Vec2(1, 0), Vec2(0, 1)].enumerated().forEach { (i, v) in
-            add(v, color: .gray)
-        }
     }
     
-    var gridVectorViews: (VectorView, VectorView) {
-        return (vectorViews[0], vectorViews[1])
-    }
-    
-    var gridVectors: (Vec2, Vec2) {
-        get {
-            return (gridVectorViews.0.vector, gridVectorViews.1.vector)
-        } set {
-            gridVectorViews.0.vector = newValue.0
-            gridVectorViews.1.vector = newValue.1
-            setNeedsDisplay()
-        }
-    }
-    
-    var showGridVectors: Bool = true {
-        didSet {
-            [vectorViews[0], vectorViews[1]].forEach { v in
-                v.isHidden = !showGridVectors
-            }
-        }
-    }
-    
-    var showGrid: Bool = true {
-        didSet {
-            setNeedsLayout()
-        }
-    }
+    var gridVectorViews: (VectorView, VectorView)?
     
     var width: CGFloat {
         return bounds.width
@@ -102,14 +73,13 @@ class PlaneView: UIView, VectorViewDelegate {
         // TODO: extract GridView and AxesView
         
         // drawGrid
-        if showGrid {
-            ctx.setStrokeColor(UIColor.gray.cgColor)
-            
-            let (v0, v1) = gridVectors
-            [(v0, v1), (v1, v0)].forEach { (v, w) in
-                for i in (0 ..< 10) { // TODO calculate line nums
-                    ctx.addLine(within: bounds, passing: convertVector(v + 𝐑(i) * w), arg: -v.asCGPoint.arg)
-                    ctx.addLine(within: bounds, passing: convertVector(v - 𝐑(i) * w), arg: -v.asCGPoint.arg)
+        if let (v0, v1) = gridVectorViews {
+            [(v0, v1), (v1, v0)].forEach { (v0, v1) in
+                let a = v0.vector
+                let b = v1.vector
+                for i in (-20 ..< 20) { // TODO calculate line nums
+                    ctx.setStrokeColor(v0.color.cgColor)
+                    ctx.addLine(within: bounds, passing: convertVector(a + 𝐑(i) * b), arg: -a.asCGPoint.arg)
                     ctx.strokePath()
                 }
             }

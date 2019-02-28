@@ -20,8 +20,9 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
     
     var timer: Timer?
     var animating: Bool = false
-
-    var transform: Mat2 = .identity
+    
+    var initialTransform: Mat2 = .identity
+    private(set) var transform: Mat2 = .identity
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,83 +30,89 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
         domainView.delegate = self
         codomainView.delegate = self
 
-        let (e0, e1) = codomainView.gridVectorViews
-        [e0, e1].forEach{ e in e.isUserInteractionEnabled = true }
+        addBoth(Vec2(1, 0), color: .gray, userInteractionEnabled: (false, true))
+        addBoth(Vec2(0, 1), color: .gray, userInteractionEnabled: (false, true))
+        addBoth(.zero, color: .red, userInteractionEnabled: (true, false))
+        addBoth(.zero, color: .blue, userInteractionEnabled: (true, false))
         
-        add(.zero, color: .red)
-        add(.zero, color: .blue)
-        
+        [domainView, codomainView].forEach { planeView in
+            planeView.gridVectorViews = (planeView.vectorViews[0], planeView.vectorViews[1])
+        }
+
         view.addGestureRecognizer(
             UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
         )
         
-        refresh()
+        reset()
         updateNavigationBar()
+    }
+    
+    func addBoth(_ v: Vec2, color: UIColor = .black, userInteractionEnabled: (Bool, Bool) = (false, false)) {
+        let v0 = domainView.add(v, color: color)
+        let v1 = codomainView.add(transform * v, color: color)
+        v0.isUserInteractionEnabled = userInteractionEnabled.0
+        v1.isUserInteractionEnabled = userInteractionEnabled.1
+        v0.related = v1
+    }
+    
+    @IBAction func reset() {
+        transform = initialTransform
+        
+        let (v0, v1) = (domainView.vectorViews[2], domainView.vectorViews[3])
+        v0.vector = Vec2(2, 1)
+        v1.vector = Vec2(1, 3)
+        
+        updateMatrix()
+        updateVectors()
+        
+        if animating {
+            toggleAnimation()
+        }
+    }
+    
+    func updateMatrix() {
+        transform.grid.enumerated().forEach { (i, a) in
+            matrixComps[i].text = a.roundedString()
+        }
+    }
+    
+    func updateVectors() {
+        for v in domainView.vectorViews {
+            guard let w = v.related else { continue }
+            w.vector = transform * v.vector
+        }
     }
     
     func updateNavigationBar() {
         navigationItem.rightBarButtonItems = [(animating ? stopButton : playButton), refrButton]
     }
     
-    func add(_ v: Vec2, color: UIColor = .black) {
-        let v1 = domainView.add(v, color: color)
-        let v2 = codomainView.add(transform * v, color: color)
-        v1.isUserInteractionEnabled = true
-        v1.related = v2
-    }
-    
-    func updateCodomain() {
-        for v1 in domainView.vectorViews {
-            guard let v2 = v1.related else { continue }
-            v2.vector = transform * v1.vector
-        }
-    }
-    
     func planeView(_ plane: PlaneView, vectorUpdated vecView: VectorView) {
         let v = vecView.vector
         if plane == domainView {
-            if let vecView2 = vecView.related {
-                let w = transform * v
-                vecView2.vector = w
-            }
+            updateVectors()
         } else if plane == codomainView {
             if vecView.tag == 0 {
                 transform[0, 0] = v[0]
                 transform[1, 0] = v[1]
-                matrixComps[0].text = v[0].roundedString()
-                matrixComps[2].text = v[1].roundedString()
-                updateCodomain()
+                updateMatrix()
+                updateVectors()
             } else if vecView.tag == 1 {
                 transform[0, 1] = v[0]
                 transform[1, 1] = v[1]
-                matrixComps[1].text = v[0].roundedString()
-                matrixComps[3].text = v[1].roundedString()
-                updateCodomain()
+                updateMatrix()
+                updateVectors()
             }
         }
     }
     
     @objc func pinchRecognized(_ g: UIPinchGestureRecognizer) {
-        let l = (domainView.unitLength * g.scale).bounded(20, 160)
+        let l = (domainView.unitLength * g.scale).bounded(10, 200)
         domainView.unitLength = l
         codomainView.unitLength = l
         g.scale = 1.0
         
         print(l)
-    }
-    
-    @IBAction func refresh() {
-        let (v0, v1) = (domainView.vectorViews[2], domainView.vectorViews[3])
-        v0.vector = Vec2(2, 1)
-        v1.vector = Vec2(1, 3)
-        
-        let (e0, e1) = codomainView.gridVectorViews
-        e0.vector = Vec2(1, 0)
-        e1.vector = Vec2(0, 1)
-
-        if animating {
-            toggleAnimation()
-        }
     }
     
     @IBAction func toggleAnimation() {
