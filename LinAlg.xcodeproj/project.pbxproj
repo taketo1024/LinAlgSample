@@ -29,10 +29,10 @@
 		14B91D092226307F00452D74 /* CGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D082226307F00452D74 /* CGExtensions.swift */; };
 		14B91D0B2226316100452D74 /* MathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0A2226316100452D74 /* MathExtensions.swift */; };
 		14B91D0D2226321B00452D74 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0C2226321B00452D74 /* FoundationExtensions.swift */; };
-		14B91D0F22263CB600452D74 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0E22263CB600452D74 /* UIViewExtensions.swift */; };
+		14B91D0F22263CB600452D74 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0E22263CB600452D74 /* UIKitExtensions.swift */; };
 		DD6C37E222251B7E0031D518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E122251B7E0031D518 /* AppDelegate.swift */; };
-		DD6C37E422251B7E0031D518 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E322251B7E0031D518 /* MasterViewController.swift */; };
-		DD6C37E622251B7E0031D518 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E522251B7E0031D518 /* DetailViewController.swift */; };
+		DD6C37E422251B7E0031D518 /* TopMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E322251B7E0031D518 /* TopMenuViewController.swift */; };
+		DD6C37E622251B7E0031D518 /* TwoPlanesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C37E522251B7E0031D518 /* TwoPlanesViewController.swift */; };
 		DD6C37E922251B7E0031D518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD6C37E722251B7E0031D518 /* Main.storyboard */; };
 		DD6C37EB22251B810031D518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD6C37EA22251B810031D518 /* Assets.xcassets */; };
 		DD6C37EE22251B810031D518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD6C37EC22251B810031D518 /* LaunchScreen.storyboard */; };
@@ -74,11 +74,11 @@
 		14B91D082226307F00452D74 /* CGExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGExtensions.swift; sourceTree = "<group>"; };
 		14B91D0A2226316100452D74 /* MathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathExtensions.swift; sourceTree = "<group>"; };
 		14B91D0C2226321B00452D74 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
-		14B91D0E22263CB600452D74 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		14B91D0E22263CB600452D74 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		DD6C37DE22251B7E0031D518 /* LinAlg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinAlg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6C37E122251B7E0031D518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD6C37E322251B7E0031D518 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		DD6C37E522251B7E0031D518 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DD6C37E322251B7E0031D518 /* TopMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuViewController.swift; sourceTree = "<group>"; };
+		DD6C37E522251B7E0031D518 /* TwoPlanesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPlanesViewController.swift; sourceTree = "<group>"; };
 		DD6C37E822251B7E0031D518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD6C37EA22251B810031D518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD6C37ED22251B810031D518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 			children = (
 				14B91D0C2226321B00452D74 /* FoundationExtensions.swift */,
 				14B91D082226307F00452D74 /* CGExtensions.swift */,
-				14B91D0E22263CB600452D74 /* UIViewExtensions.swift */,
+				14B91D0E22263CB600452D74 /* UIKitExtensions.swift */,
 				14B91D0A2226316100452D74 /* MathExtensions.swift */,
 			);
 			path = Extensions;
@@ -231,8 +231,8 @@
 		DD6C380322251C000031D518 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DD6C37E322251B7E0031D518 /* MasterViewController.swift */,
-				DD6C37E522251B7E0031D518 /* DetailViewController.swift */,
+				DD6C37E322251B7E0031D518 /* TopMenuViewController.swift */,
+				DD6C37E522251B7E0031D518 /* TwoPlanesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 				DD6C38082225245E0031D518 /* VectorView.swift in Sources */,
 				14576A472225469300FCD26E /* Real.swift in Sources */,
 				14576A692225472500FCD26E /* TypeParameters.swift in Sources */,
-				DD6C37E622251B7E0031D518 /* DetailViewController.swift in Sources */,
+				DD6C37E622251B7E0031D518 /* TwoPlanesViewController.swift in Sources */,
 				14576A27222543ED00FCD26E /* Set.swift in Sources */,
 				14576A342225442300FCD26E /* EuclideanRing.swift in Sources */,
 				14B91D0D2226321B00452D74 /* FoundationExtensions.swift in Sources */,
@@ -369,8 +369,8 @@
 				14576A67222546C700FCD26E /* SquareMatrix.swift in Sources */,
 				14576A2B2225440700FCD26E /* Module.swift in Sources */,
 				14576A2F2225441300FCD26E /* Ring.swift in Sources */,
-				14B91D0F22263CB600452D74 /* UIViewExtensions.swift in Sources */,
-				DD6C37E422251B7E0031D518 /* MasterViewController.swift in Sources */,
+				14B91D0F22263CB600452D74 /* UIKitExtensions.swift in Sources */,
+				DD6C37E422251B7E0031D518 /* TopMenuViewController.swift in Sources */,
 				14576A3B2225445400FCD26E /* Monoid.swift in Sources */,
 				DD6C37E222251B7E0031D518 /* AppDelegate.swift in Sources */,
 				14576A4D2225469300FCD26E /* Rational.swift in Sources */,

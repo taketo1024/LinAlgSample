@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, PlaneViewDelegate {
+class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
 
     @IBOutlet weak var domainView: PlaneView!
     @IBOutlet weak var codomainView: PlaneView!
