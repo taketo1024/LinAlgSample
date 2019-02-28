@@ -12,7 +12,7 @@ import CoreGraphics
 typealias Vec2 = ColVector<_2, 𝐑>
 typealias Mat2 = Matrix2<𝐑>
 
-extension Matrix where R == 𝐑, m == _1, n == _2 {
+extension Matrix where R == 𝐑, n == _2, m == _1 {
     init(_ p: CGPoint) {
         self.init(𝐑(p.x.asDouble), 𝐑(p.y.asDouble))
     }
@@ -27,5 +27,12 @@ extension Matrix where R == 𝐑, m == _1, n == _2 {
     
     var asCGPoint: CGPoint {
         return CGPoint(x.asDouble.asCGFloat, y.asDouble.asCGFloat)
+    }
+}
+
+extension Matrix where R == 𝐑, n == _2, m == _2 {
+    static func rotation(_ θ: R) -> Matrix<n, m, R> {
+        let (c, s) = (cos(θ), sin(θ))
+        return Matrix(c, -s, s, c)
     }
 }

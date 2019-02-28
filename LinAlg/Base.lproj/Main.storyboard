@@ -40,10 +40,31 @@
                         <viewLayoutGuide key="safeArea" id="tsE-Ye-0tQ"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="E4m-BQ-kgL">
+                                <connections>
+                                    <action selector="refresh" destination="JEX-9P-axG" id="auO-1o-mcK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="pause" id="8Gh-54-VyF">
+                                <connections>
+                                    <action selector="toggleAnimation" destination="JEX-9P-axG" id="yB3-01-bHB"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="play" id="uYa-vq-gSJ">
+                                <connections>
+                                    <action selector="toggleAnimation" destination="JEX-9P-axG" id="wOW-j1-lc2"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="codomainView" destination="FvV-Gy-2en" id="1NP-oZ-okD"/>
                         <outlet property="domainView" destination="7mX-sL-fDT" id="cLy-mh-4eF"/>
+                        <outlet property="playButton" destination="uYa-vq-gSJ" id="K1Y-ZC-miF"/>
+                        <outlet property="refrButton" destination="E4m-BQ-kgL" id="DZ8-tX-dmd"/>
+                        <outlet property="stopButton" destination="8Gh-54-VyF" id="rrX-zf-Hn6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -100,7 +121,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Menu" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

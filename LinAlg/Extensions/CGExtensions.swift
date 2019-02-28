@@ -13,6 +13,10 @@ extension CGFloat {
     var asDouble: Double {
         return Double(self)
     }
+    
+    func bounded(_ a: CGFloat, _ b: CGFloat) -> CGFloat {
+        return Swift.max(a, Swift.min(self, b) )
+    }
 }
 
 extension CGPoint {

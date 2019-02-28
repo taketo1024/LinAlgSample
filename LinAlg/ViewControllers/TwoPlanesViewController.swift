@@ -13,8 +13,15 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
     @IBOutlet weak var domainView: PlaneView!
     @IBOutlet weak var codomainView: PlaneView!
     
-    var transform: Mat2 = .identity
+    @IBOutlet var playButton: UIBarButtonItem!
+    @IBOutlet var stopButton: UIBarButtonItem!
+    @IBOutlet var refrButton: UIBarButtonItem!
+    
+    var timer: Timer?
+    var animating: Bool = false
 
+    var transform: Mat2 = .identity
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,12 +31,19 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
         let (e0, e1) = codomainView.gridVectorViews
         [e0, e1].forEach{ e in e.isUserInteractionEnabled = true }
         
-        add(Vec2(2, 1), color: .red)
-        add(Vec2(1, 2), color: .blue)
+        add(.zero, color: .red)
+        add(.zero, color: .blue)
         
         view.addGestureRecognizer(
             UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
         )
+        
+        refresh()
+        updateNavigationBar()
+    }
+    
+    func updateNavigationBar() {
+        navigationItem.rightBarButtonItems = [(animating ? stopButton : playButton), refrButton]
     }
     
     func add(_ v: Vec2, color: UIColor = .black) {
@@ -67,9 +81,45 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
     }
     
     @objc func pinchRecognized(_ g: UIPinchGestureRecognizer) {
-        let l = domainView.unitLength * g.scale
+        let l = (domainView.unitLength * g.scale).bounded(20, 160)
         domainView.unitLength = l
         codomainView.unitLength = l
         g.scale = 1.0
+        
+        print(l)
+    }
+    
+    @IBAction func refresh() {
+        let (v0, v1) = (domainView.vectorViews[2], domainView.vectorViews[3])
+        v0.vector = Vec2(2, 1)
+        v1.vector = Vec2(1, 3)
+        
+        let (e0, e1) = codomainView.gridVectorViews
+        e0.vector = Vec2(1, 0)
+        e1.vector = Vec2(0, 1)
+
+        if animating {
+            toggleAnimation()
+        }
+    }
+    
+    @IBAction func toggleAnimation() {
+        animating = !animating
+        
+        if animating {
+            timer = Timer.scheduledTimer(timeInterval: 1.0/60, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+        } else {
+            timer!.invalidate()
+            timer = nil
+        }
+        
+        domainView.isUserInteractionEnabled = !animating
+        updateNavigationBar()
+    }
+    
+    @objc func timerFired() {
+        let (v0, v1) = (domainView.vectorViews[2], domainView.vectorViews[3])
+        v0.vector =  Mat2.rotation(0.05) * v0.vector
+        v1.vector =  Mat2.rotation(-0.08) * v1.vector
     }
 }
