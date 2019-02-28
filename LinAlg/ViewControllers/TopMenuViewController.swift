@@ -22,12 +22,12 @@ class TopMenuViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let selected = tableView.indexPathForSelectedRow?.row ?? 0
         if segue.identifier == "showDetail" {
-            guard let indexPath = tableView.indexPathForSelectedRow,
-                  let nav = segue.destination as? UINavigationController,
+            guard let nav = segue.destination as? UINavigationController,
                   let vc = nav.topViewController as? TwoPlanesViewController else { return }
             
-            vc.title = items[indexPath.row]
+            vc.title = items[selected]
             vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             vc.navigationItem.leftItemsSupplementBackButton = true
             

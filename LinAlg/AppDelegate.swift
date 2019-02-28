@@ -16,11 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         guard let svc = window?.rootViewController as? UISplitViewController,
-              let nav = svc.viewControllers.last as? UINavigationController
+            let menu = svc.viewControllers.first as? TopMenuViewController
+//            ,
+//              let nav = svc.viewControllers.last as? UINavigationController
             else { fatalError() }
         
         svc.preferredDisplayMode = .primaryHidden
-        nav.topViewController!.navigationItem.leftBarButtonItem = svc.displayModeButtonItem
+        UIView.performWithoutAnimation {
+            menu.performSegue(withIdentifier: "showDetail", sender: nil)
+        }
         return true
     }
 
