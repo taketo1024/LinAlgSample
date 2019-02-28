@@ -3,7 +3,7 @@ import Foundation
 public struct Matrix<n: _Int, m: _Int, R: Ring>: Module {
     public typealias CoeffRing = R
     
-    private var grid: [R]
+    public var grid: [R]
     
     public var rows: Int { return n.intValue }
     public var cols: Int { return m.intValue }
@@ -26,22 +26,25 @@ public struct Matrix<n: _Int, m: _Int, R: Ring>: Module {
         self.init(grid)
     }
     
-    // Convenience initializers
-    public init(fill a: R) {
-        self.init() { (_, _) in a }
-    }
-    
-    public init(diagonal d: [R]) {
-        self.init() { (i, j) in (i == j && i < d.count) ? d[i] : .zero }
-    }
-    
-    public init(scalar a: R) {
-        self.init() { (i, j) in (i == j) ? a : .zero }
-    }
-    
     public subscript(i: Int, j: Int) -> R {
         get { return grid[i * cols + j] }
         set { grid[i * cols + j] = newValue }
+    }
+    
+    public static func fill(_ a: R) -> Matrix<n, m, R> {
+        return Matrix { (_, _) in a }
+    }
+    
+    public static func diagonal(_ d: [R]) -> Matrix<n, m, R> {
+        return Matrix { (i, j) in (i == j && i < d.count) ? d[i] : .zero }
+    }
+    
+    public static func diagonal(_ d: R...) -> Matrix<n, m, R> {
+        return Matrix.diagonal(d)
+    }
+    
+    public static func scalar(_ a: R) -> Matrix<n, m, R> {
+        return Matrix { (i, j) in (i == j) ? a : .zero }
     }
     
     public static var zero: Matrix<n, m, R> {

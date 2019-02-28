@@ -19,7 +19,7 @@ extension SquareMatrix: Monoid where n == m {}
 
 extension SquareMatrix: Ring where n == m {
     public init(from n : 𝐙) {
-        self.init(scalar: R(from: n))
+        self.init { (i, j) in (i == j) ? R(from: n) : .zero }
     }
     
     public static var identity: Matrix<n, n, R> {
