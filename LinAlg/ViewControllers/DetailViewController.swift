@@ -21,8 +21,8 @@ class DetailViewController: UIViewController, PlaneViewDelegate {
         domainView.delegate = self
         codomainView.delegate = self
 
-        codomainView.gridVectorViews.0.isUserInteractionEnabled = true
-        codomainView.gridVectorViews.1.isUserInteractionEnabled = true
+        let (e0, e1) = codomainView.gridVectorViews
+        [e0, e1].forEach{ e in e.isUserInteractionEnabled = true }
         
         add(Vec2(2, 1), color: .red)
         add(Vec2(1, 2), color: .blue)
@@ -67,7 +67,6 @@ class DetailViewController: UIViewController, PlaneViewDelegate {
     }
     
     @objc func pinchRecognized(_ g: UIPinchGestureRecognizer) {
-        print(g.scale)
         let l = domainView.unitLength * g.scale
         domainView.unitLength = l
         codomainView.unitLength = l

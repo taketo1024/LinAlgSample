@@ -8,11 +8,11 @@
 
 import UIKit
 
-@objc protocol PlaneViewDelegate: class {
-    @objc optional func planeView(_ plane: PlaneView, vectorUpdated v: VectorView)
+protocol PlaneViewDelegate: class {
+    func planeView(_ plane: PlaneView, vectorUpdated v: VectorView)
 }
 
-class PlaneView: UIView {
+class PlaneView: UIView, VectorViewDelegate {
     let vectorViewSize: CGFloat = 40.0
     var vectorViews: [VectorView] = []
     
@@ -23,7 +23,7 @@ class PlaneView: UIView {
         }
     }
 
-    @IBOutlet var delegate: PlaneViewDelegate?
+    var delegate: PlaneViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +36,9 @@ class PlaneView: UIView {
     }
     
     private func initialize() {
+        backgroundColor = .white
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.gray.cgColor
         [Vec2(1, 0), Vec2(0, 1)].enumerated().forEach { (i, v) in
             add(v, color: .gray)
         }
@@ -96,9 +99,7 @@ class PlaneView: UIView {
         
         let center = bounds.center
         
-        // fill background
-        ctx.setFillColor(UIColor.white.cgColor)
-        ctx.fill(self.bounds)
+        // TODO: extract GridView and AxesView
         
         // drawGrid
         if showGrid {
@@ -128,10 +129,10 @@ class PlaneView: UIView {
         // vector arrows
         for v in vectorViews {
             if v.isHidden { continue }
-            ctx.setLineWidth(v.lineWidth)
+            ctx.setLineWidth(v.lineWidth * (v.dragging ? 1.5 : 1.0))
             ctx.setStrokeColor(v.color.cgColor)
             ctx.move(to: convertVector(.zero))
-            ctx.addLine(to: convertVector(v.vector))
+            ctx.addLine(to: v.center + v.headCenter)
             ctx.strokePath()
         }
     }
@@ -140,17 +141,12 @@ class PlaneView: UIView {
     func add(_ v: Vec2, color: UIColor = .black, userInteractionEnabled: Bool = false) -> VectorView {
         let vecView = VectorView(frame: CGRect(0, 0, vectorViewSize, vectorViewSize))
         vecView.tag = vectorViews.count
+        vecView.backgroundColor = .clear
+        vecView.isUserInteractionEnabled = userInteractionEnabled
+        
+        vecView.delegate = self
         vecView.vector = v
         vecView.color = color
-        vecView.backgroundColor = .clear
-//        vecView.backgroundColor = .gray
-        
-        vecView.isUserInteractionEnabled = userInteractionEnabled
-        vecView.addGestureRecognizer({
-            let g = UIPanGestureRecognizer(target: self, action: #selector(panVector))
-            g.maximumNumberOfTouches = 1
-            return g
-        }())
 
         vectorViews.append(vecView)
         addSubview(vecView)
@@ -162,16 +158,19 @@ class PlaneView: UIView {
         super.layoutSubviews()
         setNeedsDisplay()
         
-        for vecView in vectorViews {
-            vecView.center = convertVector(vecView.vector)
-            vecView.setNeedsDisplay()
+        for v in vectorViews {
+            v.center = convertVector(v.vector)
+            v.setNeedsDisplay()
         }
     }
     
-    @IBAction func panVector(_ g: UIPanGestureRecognizer) {
-        guard let view = g.view as? VectorView else { return }
-        let p = g.location(in: self)
-        view.vector = convertPoint(p)
-        delegate?.planeView?(self, vectorUpdated: view)
+    func vectorViewUpdated(_ v: VectorView) {
+        v.center = convertVector(v.vector)
+        setNeedsDisplay()
+        delegate?.planeView(self, vectorUpdated: v)
+    }
+    
+    func vectorView(_ v: VectorView, dragged amount: CGPoint) {
+        v.vector = convertPoint(v.center + amount) // vectorViewUpdated will be called
     }
 }
