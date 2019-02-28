@@ -14,6 +14,8 @@ class TopMenuViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Menu"
     }
 
     override func viewWillAppear(_ animated: Bool) {

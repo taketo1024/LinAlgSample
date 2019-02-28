@@ -16,6 +16,7 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
     @IBOutlet var playButton: UIBarButtonItem!
     @IBOutlet var stopButton: UIBarButtonItem!
     @IBOutlet var refrButton: UIBarButtonItem!
+    @IBOutlet var matrixComps: [UITextField] = []
     
     var timer: Timer?
     var animating: Bool = false
@@ -71,10 +72,14 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
             if vecView.tag == 0 {
                 transform[0, 0] = v[0]
                 transform[1, 0] = v[1]
+                matrixComps[0].text = v[0].roundedString()
+                matrixComps[2].text = v[1].roundedString()
                 updateCodomain()
             } else if vecView.tag == 1 {
                 transform[0, 1] = v[0]
                 transform[1, 1] = v[1]
+                matrixComps[1].text = v[0].roundedString()
+                matrixComps[3].text = v[1].roundedString()
                 updateCodomain()
             }
         }
