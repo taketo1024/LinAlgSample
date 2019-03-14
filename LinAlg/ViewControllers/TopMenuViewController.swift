@@ -11,11 +11,12 @@ import UIKit
 class TopMenuViewController: UITableViewController {
     
     enum Item: CaseIterable {
-        case general, scale, rotate, oproj
+        case general, scale, invert, rotate, oproj
         var title: String {
             switch self {
             case .general: return "線形変換"
             case .scale  : return "拡大・縮小"
+            case .invert : return "反転"
             case .rotate : return "回転"
             case .oproj  : return "正射影"
             }
@@ -24,6 +25,7 @@ class TopMenuViewController: UITableViewController {
             switch self {
             case .general: return .identity
             case .scale  : return .diagonal(2, 3)
+            case .invert  : return .diagonal(1, -1)
             case .rotate : return .rotation(0.5235)
             case .oproj  : return .unit(0, 0)
             }
