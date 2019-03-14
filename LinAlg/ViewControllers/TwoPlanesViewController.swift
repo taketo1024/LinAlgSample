@@ -53,6 +53,7 @@ class TwoPlanesViewController: UIViewController, PlaneViewDelegate {
         v0.isUserInteractionEnabled = userInteractionEnabled.0
         v1.isUserInteractionEnabled = userInteractionEnabled.1
         v0.related = v1
+        [v0, v1].forEach{ $0.isExclusiveTouch = true }
     }
     
     @IBAction func reset() {

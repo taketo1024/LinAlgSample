@@ -13,6 +13,10 @@ typealias Vec2 = ColVector<_2, 𝐑>
 typealias Mat2 = Matrix2<𝐑>
 
 extension RealNumber {
+    var asCGFloat: CGFloat {
+        return asDouble.asCGFloat
+    }
+    
     func roundedString() -> String {
         let r = abs.asDouble
         if Swift.abs(r - r.rounded()) < 0.01 {
