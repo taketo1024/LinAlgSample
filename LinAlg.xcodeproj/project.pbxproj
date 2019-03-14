@@ -206,12 +206,12 @@
 		DD6C37E022251B7E0031D518 /* LinAlg */ = {
 			isa = PBXGroup;
 			children = (
-				14576A25222543CB00FCD26E /* Math */,
-				DD6C38062225244D0031D518 /* Views */,
-				DD6C380322251C000031D518 /* ViewControllers */,
-				14576A6A2225473E00FCD26E /* Extensions */,
-				DD6C37E122251B7E0031D518 /* AppDelegate.swift */,
 				DD6C37E722251B7E0031D518 /* Main.storyboard */,
+				DD6C37E122251B7E0031D518 /* AppDelegate.swift */,
+				DD6C380322251C000031D518 /* ViewControllers */,
+				DD6C38062225244D0031D518 /* Views */,
+				14576A25222543CB00FCD26E /* Math */,
+				14576A6A2225473E00FCD26E /* Extensions */,
 				DD6C37EA22251B810031D518 /* Assets.xcassets */,
 				DD6C37EC22251B810031D518 /* LaunchScreen.storyboard */,
 				DD6C37EF22251B810031D518 /* Info.plist */,

@@ -15,16 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        guard let svc = window?.rootViewController as? UISplitViewController,
-            let menu = svc.viewControllers.first as? TopMenuViewController
-//            ,
-//              let nav = svc.viewControllers.last as? UINavigationController
-            else { fatalError() }
-        
+        guard let svc = window?.rootViewController as? UISplitViewController else { fatalError() }
         svc.preferredDisplayMode = .primaryHidden
-        UIView.performWithoutAnimation {
-            menu.performSegue(withIdentifier: "showDetail", sender: nil)
+        
+        if let nav = svc.viewControllers.last as? UINavigationController,
+            let vc = nav.viewControllers.first {
+            vc.navigationItem.leftBarButtonItem = svc.displayModeButtonItem
+            vc.navigationItem.leftItemsSupplementBackButton = true
         }
+        
         return true
     }
 
@@ -49,6 +48,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 }
 
