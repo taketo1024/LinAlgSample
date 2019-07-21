@@ -25,7 +25,6 @@
 		14576A66222546C700FCD26E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A5A222546C700FCD26E /* Matrix.swift */; };
 		14576A67222546C700FCD26E /* SquareMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A5B222546C700FCD26E /* SquareMatrix.swift */; };
 		14576A692225472500FCD26E /* TypeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14576A682225472500FCD26E /* TypeParameters.swift */; };
-		14B91D0722262C9700452D74 /* RealFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0622262C9700452D74 /* RealFunctions.swift */; };
 		14B91D092226307F00452D74 /* CGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D082226307F00452D74 /* CGExtensions.swift */; };
 		14B91D0B2226316100452D74 /* MathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0A2226316100452D74 /* MathExtensions.swift */; };
 		14B91D0D2226321B00452D74 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B91D0C2226321B00452D74 /* FoundationExtensions.swift */; };
@@ -70,7 +69,6 @@
 		14576A5A222546C700FCD26E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		14576A5B222546C700FCD26E /* SquareMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareMatrix.swift; sourceTree = "<group>"; };
 		14576A682225472500FCD26E /* TypeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParameters.swift; sourceTree = "<group>"; };
-		14B91D0622262C9700452D74 /* RealFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealFunctions.swift; sourceTree = "<group>"; };
 		14B91D082226307F00452D74 /* CGExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGExtensions.swift; sourceTree = "<group>"; };
 		14B91D0A2226316100452D74 /* MathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathExtensions.swift; sourceTree = "<group>"; };
 		14B91D0C2226321B00452D74 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			children = (
 				14576A3E2225467D00FCD26E /* Abstract */,
 				14576A3F2225469300FCD26E /* Numbers */,
-				14B91D0522262C7B00452D74 /* Functions */,
 				14576A4E222546C700FCD26E /* Matrix */,
 				14B91D042226216A00452D74 /* Misc */,
 			);
@@ -175,14 +172,6 @@
 				14576A682225472500FCD26E /* TypeParameters.swift */,
 			);
 			path = Misc;
-			sourceTree = "<group>";
-		};
-		14B91D0522262C7B00452D74 /* Functions */ = {
-			isa = PBXGroup;
-			children = (
-				14B91D0622262C9700452D74 /* RealFunctions.swift */,
-			);
-			path = Functions;
 			sourceTree = "<group>";
 		};
 		DD6C37D522251B7E0031D518 = {
@@ -360,7 +349,6 @@
 				14576A492225469300FCD26E /* Integer.swift in Sources */,
 				14576A4A2225469300FCD26E /* Complex.swift in Sources */,
 				14B91D0B2226316100452D74 /* MathExtensions.swift in Sources */,
-				14B91D0722262C9700452D74 /* RealFunctions.swift in Sources */,
 				14576A29222543F700FCD26E /* AdditiveGroup.swift in Sources */,
 				DD6C380522251DE50031D518 /* PlaneView.swift in Sources */,
 				14576A352225442300FCD26E /* Field.swift in Sources */,
@@ -537,6 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49NNRESLVL;
 				INFOPLIST_FILE = LinAlg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -554,6 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49NNRESLVL;
 				INFOPLIST_FILE = LinAlg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -46,7 +46,7 @@ public struct RationalNumber: Field, Comparable, ExpressibleByIntegerLiteral, Co
     }
     
     public var norm: 𝐑 {
-        return 𝐑(from: abs)
+        return 𝐑(abs)
     }
     
     public var inverse: 𝐐? {

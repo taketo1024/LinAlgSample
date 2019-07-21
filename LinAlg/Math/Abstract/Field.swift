@@ -2,7 +2,7 @@ import Foundation
 
 public protocol Field: EuclideanRing {}
 
-public extension Field {
+extension Field {
     public var normalizeUnit: Self {
         return self.inverse!
     }

@@ -12,7 +12,7 @@ public protocol SetType: Hashable, CustomStringConvertible {
     static var symbol: String { get }
 }
 
-public extension SetType {
+extension SetType {
     public static var symbol: String {
         return String(describing: self)
     }

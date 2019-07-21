@@ -47,7 +47,7 @@ extension SquareMatrix: Ring where n == m {
     }
 }
 
-public extension SquareMatrix where n == m, n == _1 {
+extension SquareMatrix where n == m, n == _1 {
     public var asScalar: R {
         return self[0, 0]
     }

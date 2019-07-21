@@ -7,6 +7,10 @@ extension 𝐙: EuclideanRing {
         self.init(n)
     }
     
+    public static var zero: Int {
+        return 0
+    }
+    
     public var inverse: 𝐙? {
         return (self.abs == 1) ? self : nil
     }

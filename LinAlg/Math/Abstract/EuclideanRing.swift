@@ -9,7 +9,7 @@ public protocol EuclideanRing: Ring {
     static func % (a: Self, b: Self) -> Self
 }
 
-public extension EuclideanRing {
+extension EuclideanRing {
     public static func /% (_ a: Self, b: Self) -> (q: Self, r: Self) {
         return a.eucDiv(by: b)
     }

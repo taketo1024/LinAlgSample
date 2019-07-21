@@ -89,10 +89,6 @@ public struct Matrix<n: _Int, m: _Int, R: Ring>: Module {
         return Matrix<n, m, R2>(grid.map(f))
     }
     
-    public var hashValue: Int {
-        return 0 // TODO
-    }
-    
     public var description: String {
         return "[" + (0 ..< rows).map({ i in
             return (0 ..< cols).map({ j in
@@ -145,13 +141,13 @@ extension Matrix: VectorSpace, FiniteDimVectorSpace where R: Field {
     }
 }
 
-public extension Matrix where R == 𝐑 {
+extension Matrix where R == 𝐑 {
     public var asComplex: Matrix<n, m, 𝐂> {
         return Matrix<n, m, 𝐂>(grid.map{ $0.asComplex })
     }
 }
 
-public extension Matrix where R == 𝐂 {
+extension Matrix where R == 𝐂 {
     public var realPart: Matrix<n, m, 𝐑> {
         return Matrix<n, m, 𝐑>(grid.map{ $0.realPart })
     }

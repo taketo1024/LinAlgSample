@@ -7,7 +7,7 @@ public protocol Ring: AdditiveGroup, Monoid {
     var normalizeUnit: Self { get }
 }
 
-public extension Ring {
+extension Ring {
     public var isInvertible: Bool {
         return (inverse != nil)
     }

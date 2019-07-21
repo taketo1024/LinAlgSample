@@ -12,7 +12,7 @@ public typealias ColVector<n: _Int, R: Ring> = Matrix<n, _1, R>
 public typealias RowVector<m: _Int, R: Ring> = Matrix<_1, m, R>
 
 // ColVector
-public extension Matrix where m == _1 {
+extension Matrix where m == _1 {
     public subscript(index: Int) -> R {
         get { return self[index, 0] }
         set { self[index, 0] = newValue }
@@ -20,7 +20,7 @@ public extension Matrix where m == _1 {
 }
 
 // RowVector
-public extension Matrix where n == _1 {
+extension Matrix where n == _1 {
     public subscript(index: Int) -> R {
         get { return self[0, index] }
         set { self[0, index] = newValue }

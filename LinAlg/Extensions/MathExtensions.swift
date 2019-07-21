@@ -12,20 +12,16 @@ import CoreGraphics
 typealias Vec2 = ColVector<_2, 𝐑>
 typealias Mat2 = Matrix2<𝐑>
 
-extension RealNumber {
-    var asCGFloat: CGFloat {
-        return asDouble.asCGFloat
-    }
-    
+extension 𝐑 {
     func roundedString() -> String {
-        let r = abs.asDouble
+        let r = abs
         if Swift.abs(r - r.rounded()) < 0.01 {
-            return String(Int(asDouble.rounded()))
+            return String(Int(rounded()))
         }
         if r < 10 {
-            return String(format: "%.2f", asDouble)
+            return String(format: "%.2f", self)
         } else {
-            return String(format: "%.1f", asDouble)
+            return String(format: "%.1f", self)
         }
     }
 }
@@ -44,7 +40,7 @@ extension Matrix where R == 𝐑, n == _2, m == _1 {
     }
     
     var asCGPoint: CGPoint {
-        return CGPoint(x.asDouble.asCGFloat, y.asDouble.asCGFloat)
+        return CGPoint(x.asCGFloat, y.asCGFloat)
     }
 }
 
